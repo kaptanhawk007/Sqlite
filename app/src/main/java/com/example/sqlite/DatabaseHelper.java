@@ -1,5 +1,6 @@
 package com.example.sqlite;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -21,7 +22,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
+        String sqlStatements="CREATE TABLE students(id int PRIMARY KEY AUTOINCREMENT, name TEXT,email TEXT);";
+        db.execSQL(sqlStatements);
+
+        ContentValues values= new ContentValues();
+        values.put("name","Kaptan");
+        values.put("email","kaptanyadav007@gmail.com");
+        long id=db.insert("students",null,values);
+        ContentValues secondValues= new ContentValues();
+        secondValues.put("name","Muneem");
+        secondValues.put("email","Muneem@gmail.com");
+        db.insert("students",null,secondValues);
+
 
     }
 
