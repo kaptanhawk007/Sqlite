@@ -23,16 +23,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlStatements="CREATE TABLE students(id int PRIMARY KEY AUTOINCREMENT, name TEXT,email TEXT);";
+        String sqlStatements="CREATE TABLE students(id int PRIMARY KEY, name TEXT,email TEXT);";
         db.execSQL(sqlStatements);
 
         ContentValues values= new ContentValues();
+        values.put("id",1);
         values.put("name","Kaptan");
         values.put("email","kaptanyadav007@gmail.com");
         long id=db.insert("students",null,values);
         ContentValues secondValues= new ContentValues();
         secondValues.put("name","Muneem");
         secondValues.put("email","Muneem@gmail.com");
+        secondValues.put("id",2);
         db.insert("students",null,secondValues);
 
 
